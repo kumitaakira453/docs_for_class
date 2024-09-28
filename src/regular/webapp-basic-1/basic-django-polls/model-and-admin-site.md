@@ -14,11 +14,11 @@ title: "モデル・管理者サイト(追記事項)"
 ### `shell_plus`の導入方法
 
 1. ターミナル上で以下を実行し`django-extensions`をインストール
-   ```
+   ```bash
     $ pip install django-extensions
    ```
 2. `mysite/settings.py`の`INSTALLED_APPS`を編集
-   ```
+   ```python
     INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,7 +32,7 @@ title: "モデル・管理者サイト(追記事項)"
    ]
    ```
 3. 最後にターミナル上で shell を起動します
-   ```
+   ```bash
    $ python manage.py shell_plus
    ```
 
@@ -46,7 +46,7 @@ Django には自動で管理者画面が作成されるという非常に便利�
 ただ実際にサービスを利用する管理者にとっては日本語で統一しておいたほうがわかりやすいでしょう。そこで`models.py`の設定を変更して日本語表示にして見ましょう。
 ついでに field も日本語表示するようにコードを変更しています。
 
-```
+```python
 from django.db import models
 
 class Question(models.Model):
@@ -89,7 +89,7 @@ class Choice(models.Model):
 
 Question や Choice の一覧を表示するページには、`__str__`で登録した形式で DB についての情報が書かれていますが、実際にそれぞれの field の情報を確認しようとすると、それぞれを選択して別の画面を開く必要があります。特定の field の値を全て確認したいというときに不便です。そこで一覧画面でも全ての field が閲覧できるように編集してみましょう。`admin.py`を以下のように変更してください。
 
-```
+```python
 from django.contrib import admin
 from .models import Question, Choice
 
@@ -117,7 +117,7 @@ Djangoが提供してくれている管理者画面をそのまま使う場合�
 
 現在の使用ではそれぞれの DB クラスごとに管理者画面の別々のページで作成する必要がありますが、Question を作ってから、それに紐ずく Choice を毎回別のページを開いて作成するのは面倒です。以下のよう`admin.py`を変更することで Question を作成する画面に Choice を作成する部分を追加することができます。
 
-```
+```python
 from django.contrib import admin
 from .models import Question, Choice
 
