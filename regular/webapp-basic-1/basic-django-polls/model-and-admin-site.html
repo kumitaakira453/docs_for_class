@@ -18,7 +18,7 @@
 {"@context":"https://schema.org","@type":"WebPage","headline":"モデル・管理者サイト(追記事項)","url":"/regular/webapp-basic-1/basic-django-polls/model-and-admin-site.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/style.css?v=97010bc1e3bfba03bc6f4125667ecaa76d45215a">
+    <link rel="stylesheet" href="/assets/css/style.css?v=6fd19b588a43d63c5862cd7f7e7d052f6149c2bc">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup Google Analytics -->
@@ -49,25 +49,25 @@
 
 <ol>
   <li>ターミナル上で以下を実行し<code class="language-plaintext highlighter-rouge">django-extensions</code>をインストール
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ pip install django-extensions
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>pip <span class="nb">install </span>django-extensions
 </code></pre></div>    </div>
   </li>
   <li><code class="language-plaintext highlighter-rouge">mysite/settings.py</code>の<code class="language-plaintext highlighter-rouge">INSTALLED_APPS</code>を編集
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> INSTALLED_APPS = [
- 'django.contrib.admin',
- 'django.contrib.auth',
- 'django.contrib.contenttypes',
- 'django.contrib.sessions',
- 'django.contrib.messages',
- 'django.contrib.staticfiles',
- 'django_extensions', ←ここに追記
- 'polls',
- 'forum',
-]
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+ <span class="s">'django.contrib.admin'</span><span class="p">,</span>
+ <span class="s">'django.contrib.auth'</span><span class="p">,</span>
+ <span class="s">'django.contrib.contenttypes'</span><span class="p">,</span>
+ <span class="s">'django.contrib.sessions'</span><span class="p">,</span>
+ <span class="s">'django.contrib.messages'</span><span class="p">,</span>
+ <span class="s">'django.contrib.staticfiles'</span><span class="p">,</span>
+ <span class="s">'django_extensions'</span><span class="p">,</span> <span class="err">←</span><span class="n">ここに追記</span>
+ <span class="s">'polls'</span><span class="p">,</span>
+ <span class="s">'forum'</span><span class="p">,</span>
+<span class="p">]</span>
 </code></pre></div>    </div>
   </li>
   <li>最後にターミナル上で shell を起動します
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python manage.py shell_plus
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python manage.py shell_plus
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -82,31 +82,31 @@
 ただ実際にサービスを利用する管理者にとっては日本語で統一しておいたほうがわかりやすいでしょう。そこで<code class="language-plaintext highlighter-rouge">models.py</code>の設定を変更して日本語表示にして見ましょう。
 ついでに field も日本語表示するようにコードを変更しています。</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from django.db import models
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
-class Question(models.Model):
-    question_text = models.CharField("質問内容", max_length=200)
-    pub_date = models.DateTimeField("公開日")
+<span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">question_text</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="s">"質問内容"</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="s">"公開日"</span><span class="p">)</span>
 
-    class Meta:
-        verbose_name = "質問"
-        verbose_name_plural = "質問一覧"
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">verbose_name</span> <span class="o">=</span> <span class="s">"質問"</span>
+        <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="s">"質問一覧"</span>
 
-    def __str__(self):
-        return self.question_text
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">question_text</span>
 
 
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField("選択肢", max_length=200)
-    votes = models.IntegerField("投票数", default=0)
+<span class="k">class</span> <span class="nc">Choice</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">question</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Question</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">CASCADE</span><span class="p">)</span>
+    <span class="n">choice_text</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="s">"選択肢"</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">votes</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="s">"投票数"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-    class Meta:
-        verbose_name = "選択肢"
-        verbose_name_plural = "選択肢一覧"
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">verbose_name</span> <span class="o">=</span> <span class="s">"選択肢"</span>
+        <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="s">"選択肢一覧"</span>
 
-    def __str__(self):
-        return self.choice_text
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">choice_text</span>
 </code></pre></div></div>
 
 <h4 id="コードの簡単な解説">コードの簡単な解説</h4>
@@ -126,24 +126,24 @@ class Choice(models.Model):
 
 <p>Question や Choice の一覧を表示するページには、<code class="language-plaintext highlighter-rouge">__str__</code>で登録した形式で DB についての情報が書かれていますが、実際にそれぞれの field の情報を確認しようとすると、それぞれを選択して別の画面を開く必要があります。特定の field の値を全て確認したいというときに不便です。そこで一覧画面でも全ての field が閲覧できるように編集してみましょう。<code class="language-plaintext highlighter-rouge">admin.py</code>を以下のように変更してください。</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from django.contrib import admin
-from .models import Question, Choice
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Question</span><span class="p">,</span> <span class="n">Choice</span>
 
 
-#教科書に沿って書いた以下の二行はコメントアウトする
+<span class="c1">#教科書に沿って書いた以下の二行はコメントアウトする
 #admin.site.register(Question)
 #admin.site.register(Choice)
+</span>
 
 
+<span class="o">@</span><span class="n">admin</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">Question</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">QuestionAdmin</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">'question_text'</span><span class="p">,</span> <span class="s">'pub_date'</span><span class="p">)</span>
 
-@admin.register(Question)
-class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('question_text', 'pub_date')
 
-
-@admin.register(Choice)
-class ChoiceAdmin(admin.ModelAdmin):
-    list_display = ('question', 'choice_text', 'votes')
+<span class="o">@</span><span class="n">admin</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">Choice</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ChoiceAdmin</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">'question'</span><span class="p">,</span> <span class="s">'choice_text'</span><span class="p">,</span> <span class="s">'votes'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h4 id="コードの簡単な説明">コードの簡単な説明</h4>
@@ -153,27 +153,27 @@ class ChoiceAdmin(admin.ModelAdmin):
 
 <p>現在の使用ではそれぞれの DB クラスごとに管理者画面の別々のページで作成する必要がありますが、Question を作ってから、それに紐ずく Choice を毎回別のページを開いて作成するのは面倒です。以下のよう<code class="language-plaintext highlighter-rouge">admin.py</code>を変更することで Question を作成する画面に Choice を作成する部分を追加することができます。</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from django.contrib import admin
-from .models import Question, Choice
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Question</span><span class="p">,</span> <span class="n">Choice</span>
 
-#教科書に沿って書いた以下の二行はコメントアウトする
+<span class="c1">#教科書に沿って書いた以下の二行はコメントアウトする
 #admin.site.register(Question)
 #admin.site.register(Choice)
+</span>
+<span class="c1">#他の DB 作成画面で表示する用の Choice 作成部分(インラインと呼ぶ)を作る
+</span><span class="k">class</span> <span class="nc">ChoiceInline</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">TabularInline</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Choice</span>
+    <span class="n">extra</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># 空の追加フィールドを 1 つ表示
+</span>
+<span class="o">@</span><span class="n">admin</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">Question</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">QuestionAdmin</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">'question_text'</span><span class="p">,</span> <span class="s">'pub_date'</span><span class="p">)</span> <span class="c1"># インライン(一緒に表示する部分)として登録
+</span>    <span class="n">inlines</span> <span class="o">=</span> <span class="p">[</span><span class="n">ChoiceInline</span><span class="p">]</span>
 
-#他の DB 作成画面で表示する用の Choice 作成部分(インラインと呼ぶ)を作る
-class ChoiceInline(admin.TabularInline):
-    model = Choice
-    extra = 1 # 空の追加フィールドを 1 つ表示
-
-@admin.register(Question)
-class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('question_text', 'pub_date') # インライン(一緒に表示する部分)として登録
-    inlines = [ChoiceInline]
-
-@admin.register(Choice)
-    class ChoiceAdmin(admin.ModelAdmin):
-    list_display = ('question', 'choice_text', 'votes') # 一覧で表示するフィールド
-
+<span class="o">@</span><span class="n">admin</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">Choice</span><span class="p">)</span>
+    <span class="k">class</span> <span class="nc">ChoiceAdmin</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">'question'</span><span class="p">,</span> <span class="s">'choice_text'</span><span class="p">,</span> <span class="s">'votes'</span><span class="p">)</span> <span class="c1"># 一覧で表示するフィールド
+</span>
 </code></pre></div></div>
 
 
