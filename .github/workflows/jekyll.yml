@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+permissions:
+  contents: write # リポジトリの内容への書き込みを許可
 jobs:
   build:
     runs-on: ubuntu-latest
