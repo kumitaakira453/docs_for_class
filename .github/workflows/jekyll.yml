@@ -13,7 +13,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.5
+          ruby-version: "3.2.5"
       - name: Install dependencies
         run: bundle install
       - name: Build site with Jekyll
@@ -22,5 +22,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages # gh-pagesブランチを指定
+          publish_branch: gh-pages
           publish_dir: ./public
+      - name: Set permissions for the GitHub token
+        run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
