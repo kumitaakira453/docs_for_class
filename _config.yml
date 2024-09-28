@@ -1,20 +1,4 @@
-# Jekyll settings
-source: src
-destination: public
 markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
-
-theme: minima
-minima:
-  color_scheme: dark
-
-# GitHub Pages setting for remote theme
-remote_theme: "jekyll/minima"
-
-# Include assets and necessary files
-include:
-  - _pages
-  - _posts
-  - assets
