@@ -1,0 +1,154 @@
+/* 全体のフォントと背景 */
+body {
+    font-family: 'Arial', sans-serif;
+    /* 読みやすいフォント */
+    line-height: 1.6;
+    /* 行の高さを設定 */
+    margin: 0;
+    padding: 20px;
+    background-color: #ffffff;
+    /* ライトテーマ背景 */
+    color: #333333;
+    /* テキスト色を濃いグレーに */
+}
+
+/* リンク */
+a {
+    color: #1e90ff;
+    /* リンクの色を青に */
+    text-decoration: none;
+    /* 下線を消す */
+}
+
+a:hover {
+    text-decoration: underline;
+    /* ホバー時に下線を追加 */
+}
+
+/* 見出し */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #333333;
+    /* 見出しの色 */
+    margin: 1rem 0;
+    /* マージンを設定 */
+}
+
+/* コードブロック */
+pre {
+    background-color: #f5f5f5;
+    /* コードブロックの背景 */
+    color: #333333;
+    /* コードの文字色 */
+    padding: 1rem;
+    /* 内部余白 */
+    border-radius: 5px;
+    /* 角を丸める */
+    overflow: auto;
+    /* オーバーフロー時にスクロール */
+    border: 1px solid #ccc;
+    /* 薄いグレーの枠線 */
+}
+
+/* コードのハイライト */
+.language-python {
+    color: #d19a66;
+    /* Pythonのシンタックスハイライト色 */
+}
+
+.language-javascript {
+    color: #f1c40f;
+    /* JavaScriptのシンタックスハイライト色 */
+}
+
+.language-html {
+    color: #e67e22;
+    /* HTMLのシンタックスハイライト色 */
+}
+
+.language-css {
+    color: #3498db;
+    /* CSSのシンタックスハイライト色 */
+}
+
+.language-java {
+    color: #8e44ad;
+    /* Javaのシンタックスハイライト色 */
+}
+
+.language-ruby {
+    color: #e74c3c;
+    /* Rubyのシンタックスハイライト色 */
+}
+
+.comment {
+    color: #7f848e;
+    /* コメントの色 */
+}
+
+/* リスト */
+ul,
+ol {
+    margin: 1rem 0;
+    /* リストのマージン */
+    padding-left: 20px;
+    /* リストのインデント */
+}
+
+/* ボタン */
+button {
+    background-color: #1e90ff;
+    /* ボタンの背景色 */
+    color: #ffffff;
+    /* ボタンの文字色 */
+    border: none;
+    /* ボーダーをなしに */
+    padding: 10px 15px;
+    /* 内部余白 */
+    border-radius: 5px;
+    /* 角を丸める */
+    cursor: pointer;
+    /* カーソルをポインターに */
+}
+
+button:hover {
+    background-color: #007bff;
+    /* ホバー時の色 */
+}
+
+/* テーブル */
+table {
+    width: 100%;
+    /* テーブルの幅を100%に */
+    border-collapse: collapse;
+    /* ボーダーを重ねる */
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    /* 薄いグレーのボーダー */
+    padding: 10px;
+    /* 内部余白 */
+    text-align: left;
+    /* テキストを左寄せ */
+}
+
+th {
+    background-color: #f0f0f0;
+    /* ヘッダーの背景色 */
+    color: #333333;
+    /* ヘッダーの文字色 */
+}
+
+/* その他のスタイル */
+hr {
+    border: 1px solid #ccc;
+    /* 水平線のスタイル */
+    margin: 20px 0;
+    /* マージン */
+}
