@@ -1,8 +1,8 @@
 // 変数を定義
 $grey-color: #808080;
 
-@import "minima"; // minimaのSCSSをインポート
 @import "minima/_variables"; // 変数が含まれているファイルをインポート
+@import "minima"; // minimaのSCSSをインポート
 
 body {
   background-color: #121212;
